@@ -140,13 +140,12 @@
       ontouchmove: function(e) {
         this.touches.push(e.touches[0]);
         var touchesCount = this.touches.length;
-        var secondsDiff = parseInt((this.touches[touchesCount-1].clientY - this.touches[0].clientY) / 80);
+        var secondsDiff = parseInt((this.touches[touchesCount-1].clientY - this.touches[0].clientY) / 50);
 
         if (!this.secondsModifier && secondsDiff != 0) {
           this.secondsModifier = { step: -(secondsDiff) };
 
           this.secondsModifier['interval'] = setInterval(function() {
-            this.seconds += this.secondsModifier['step'];
             this.resetCountingNumber();
           }.bind(this), 800);
         }
@@ -158,6 +157,7 @@
       ontouchend: function(e) {
         this.touches = null;
         if (this.secondsModifier) {
+          this.seconds += this.secondsModifier['step'];
           clearInterval(this.secondsModifier['interval']);
           this.secondsModifier = null;
         }
