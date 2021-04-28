@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>random</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="50" height="50"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-88.000000, -85.000000)">
+            <g id="random" transform="translate(88.000000, 85.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask"></g>
+                <path d="M27.3398438,19.2070313 C2.11203038,4.95886999 33.0953006,40.8467331 22.0078125,36.8828125 C18.8089819,35.7391891 18.6639344,30.8172893 19.453125,25.9765625 C19.748131,24.1670586 45.8440888,20.6084971 33.3515625,16.4257813 C26.1796327,14.024494 29.3945607,21.4997788 28.4570313,28.53125" stroke="#979797" stroke-width="3" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

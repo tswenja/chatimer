@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>ball</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="50" height="50"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-158.000000, -85.000000)">
+            <g id="ball" transform="translate(158.000000, 85.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask"></g>
+                <path d="M21.046875,23.3320312 C19.6627604,24.1510417 17.8501525,24.4954864 16.8945312,25.7890625 C10.8151188,34.0184553 22.1598155,28.7181928 24.1835937,30.0976562 C25.5727114,31.0445174 21.5313921,33.3590155 22.3828125,34.8085937 C24.820487,38.9588347 29.430755,31.1188541 29.578125,31 C30.1814595,30.5134098 31.4684267,31.1547329 31.84375,30.4765625 C34.6904817,25.3328128 28.5206232,27.0364595 26.921875,24.4453125 C25.6509477,22.3854763 27.3362289,19.199052 25.890625,17.2578125 C25.2006108,16.331222 23.2774507,18.1640983 23.09375,19.3046875" stroke="#979797" stroke-width="3" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

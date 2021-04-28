@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>C．H．A．T．I．M．E．R</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js -->
+  <script src="assets/js/vue-2.5.16.js"></script>
+  <!-- https://unpkg.com/vue-router/dist/vue-router.js -->
+  <script src="assets/js/vue-router.js"></script>
+
+  <!-- https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css -->
+  <link rel="stylesheet" href="assets/css/tailwind-2.1.2.min.css">
+</head>
+<body>
+
+  <main id="main">
+    <!--<router-link to="/times" class="absolute">...</router-link>-->
+    <router-view></router-view>
+  </main>
+
+
+  <script type="text/x-template" id="cha-numbers-template">
+    <div>times</div>
+  </script>
+
+  <script type="text/x-template" id="chatimer-template">
+    <div class="h-screen flex items-center" @touchstart="ontouchstart" @touchmove="ontouchmove" @touchend="ontouchend">
+      <div class="mx-auto max-w-full">
+        <div>
+          <div v-show="!state.current.waiting" class="text-center text-9xl">{{ countingNumber }}</div>
+          <div v-show="state.current.waiting" class="text-center text-9xl">
+            <input type='text' class="w-full text-center text-9xl focus:outline-none" v-model="seconds" @blur="resetCountingNumber" />
+          </div>
+        </div>
+        <div class="my-16 text-center">
+          <div v-show="state.current.waiting">
+            <button class="w-24 h-24 rounded-full focus:outline-none" :class="highlightClass" @click="count"></button>
+          </div>
+          <div v-show="state.current.counting">
+            <button class="w-24 h-24 rounded-full bg-white focus:outline-none" @click="pause"></button>
+          </div>
+          <div v-show="state.current.paused">
+            <button class="w-24 h-24 rounded-full focus:outline-none" :class="highlightClass" @click="resume"></button>
+          </div>
+          <div v-show="state.current.completed">
+            <button class="w-24 h-24 rounded-full bg-gray-100 focus:outline-none" @click="nextRound"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="chatimer-editor-template">
+    <div>
+      <div @click="add(1)">+1</div>
+      <div>{{ seconds }}</div>
+      <div @click="add(5)">+5</div>
+      <div @click='done()'>Done</div>
+    </div>
+  </script>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

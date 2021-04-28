@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>strip</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="50" height="50"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-228.000000, -85.000000)">
+            <g id="strip" transform="translate(228.000000, 85.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask"></g>
+                <path d="M24.03125,38.1328125 C15.7621492,35.0051886 20.3667805,34.8219392 20.7734375,29.4726563 C20.9856188,26.6815629 21.1943935,9.29651126 24.7734375,10.2070313 C34.1943862,12.6037501 22.4242684,30.2330132 28.2890625,36.109375" stroke="#979797" stroke-width="3" mask="url(#mask-2)" transform="translate(23.856224, 24.152667) rotate(24.000000) translate(-23.856224, -24.152667) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
