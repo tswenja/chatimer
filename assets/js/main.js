@@ -31,6 +31,7 @@
         round: 1,
         seconds: this.$route.query.seconds ? parseInt(this.$route.query.seconds) : 30,
         countingNumber: null,
+        secondsModifier: null,
         state: {
           current: { waiting: true, counting: false, paused: false, completed: false }
         }
@@ -40,6 +41,10 @@
       this.resetCountingNumber();
     },
     computed: {
+      secondsModifyStep: function() {
+        if (this.secondsModifier.step >= 0) return '+' + this.secondsModifier.step;
+        else return this.secondsModifier.step;
+      }
     },
     methods: {
       countdown: function() {

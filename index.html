@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
 <head>
   <title>C．H．A．T．I．M．E．R</title>
 
@@ -13,12 +13,8 @@
 
   <!-- https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css -->
   <link rel="stylesheet" href="assets/css/tailwind-2.1.2.min.css">
-
-  <style>
-    html, body { height: 100%; }
-  </style>
 </head>
-<body>
+<body class="h-full overflow-hidden">
 
   <main id="main" class="h-full">
     <!--<router-link to="/times" class="absolute">...</router-link>-->
@@ -31,27 +27,35 @@
   </script>
 
   <script type="text/x-template" id="chatimer-template">
-    <div class="h-full flex items-center" @touchstart="ontouchstart" @touchmove="ontouchmove" @touchend="ontouchend">
-      <div class="mx-auto max-w-full">
-        <div>
-          <div v-show="!state.current.waiting" class="text-center text-9xl">{{ countingNumber }}</div>
-          <div v-show="state.current.waiting" class="text-center text-9xl">
-            <input type='text' class="w-full text-center text-9xl focus:outline-none" v-model="seconds" @blur="resetCountingNumber" />
+    <div class="relative h-full">
+      <div class="h-full flex items-center" @touchstart="ontouchstart" @touchmove="ontouchmove" @touchend="ontouchend">
+        <div class="mx-auto max-w-full">
+          <div class="mb-16">
+            <div v-show="!state.current.waiting" class="text-center text-9xl">{{ countingNumber }}</div>
+            <div v-show="state.current.waiting" class="text-center text-9xl">
+              <input type='text' class="w-full text-center text-9xl focus:outline-none" v-model="seconds" @blur="resetCountingNumber" />
+            </div>
+          </div>
+          <div class="pb-16 text-center">
+            <div v-show="state.current.waiting">
+              <button class="w-20 h-20 rounded-full focus:outline-none" :class="highlightClass" @click="count"></button>
+            </div>
+            <div v-show="state.current.counting">
+              <button class="w-20 h-20 rounded-full bg-white focus:outline-none" @click="pause"></button>
+            </div>
+            <div v-show="state.current.paused">
+              <button class="w-20 h-20 rounded-full focus:outline-none" :class="highlightClass" @click="resume"></button>
+            </div>
+            <div v-show="state.current.completed">
+              <button class="w-20 h-20 rounded-full bg-gray-100 focus:outline-none" @click="nextRound"></button>
+            </div>
           </div>
         </div>
-        <div class="my-16 text-center">
-          <div v-show="state.current.waiting">
-            <button class="w-24 h-24 rounded-full focus:outline-none" :class="highlightClass" @click="count"></button>
-          </div>
-          <div v-show="state.current.counting">
-            <button class="w-24 h-24 rounded-full bg-white focus:outline-none" @click="pause"></button>
-          </div>
-          <div v-show="state.current.paused">
-            <button class="w-24 h-24 rounded-full focus:outline-none" :class="highlightClass" @click="resume"></button>
-          </div>
-          <div v-show="state.current.completed">
-            <button class="w-24 h-24 rounded-full bg-gray-100 focus:outline-none" @click="nextRound"></button>
-          </div>
+      </div>
+
+      <div v-if="secondsModifier" class="absolute top-0 bottom-0 w-full bg-gray-300 bg-opacity-50">
+        <div class="pt-6 text-center text-3xl text-white font-black">
+          {{ secondsModifyStep }}
         </div>
       </div>
     </div>
