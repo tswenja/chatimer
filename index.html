@@ -13,10 +13,14 @@
 
   <!-- https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css -->
   <link rel="stylesheet" href="assets/css/tailwind-2.1.2.min.css">
+
+  <style>
+    html, body { height: 100%; }
+  </style>
 </head>
 <body>
 
-  <main id="main">
+  <main id="main" class="h-full">
     <!--<router-link to="/times" class="absolute">...</router-link>-->
     <router-view></router-view>
   </main>
@@ -27,7 +31,7 @@
   </script>
 
   <script type="text/x-template" id="chatimer-template">
-    <div class="h-screen flex items-center" @touchstart="ontouchstart" @touchmove="ontouchmove" @touchend="ontouchend">
+    <div class="h-full flex items-center" @touchstart="ontouchstart" @touchmove="ontouchmove" @touchend="ontouchend">
       <div class="mx-auto max-w-full">
         <div>
           <div v-show="!state.current.waiting" class="text-center text-9xl">{{ countingNumber }}</div>
