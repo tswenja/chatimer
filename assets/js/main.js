@@ -152,6 +152,7 @@
 
         if (this.secondsModifier) {
           this.secondsModifier['step'] = -(secondsDiff);
+          this.countingNumber += -(secondsDiff);
         }
       },
       ontouchend: function(e) {
