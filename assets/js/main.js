@@ -41,9 +41,9 @@
       this.resetCountingNumber();
     },
     computed: {
-      secondsModifyStep: function() {
-        if (this.secondsModifier.step >= 0) return '+' + this.secondsModifier.step;
-        else return this.secondsModifier.step;
+      secondsModifyDelta: function() {
+        if (this.secondsModifier.delta >= 0) return '+' + this.secondsModifier.delta;
+        else return this.secondsModifier.delta;
       }
     },
     methods: {
@@ -101,6 +101,11 @@
       edit: function() {
         // router.push({ path: '/edit', query: { seconds: this.seconds } });
       },
+      cancel: function() {
+        this.resetCountingNumber();
+        this.setState('waiting');
+        this.updateStyles();
+      },
       nextRound: function() {
         this.resetCountingNumber();
         this.round += 1;
@@ -140,27 +145,23 @@
       ontouchmove: function(e) {
         this.touches.push(e.touches[0]);
         var touchesCount = this.touches.length;
-        var secondsDiff = parseInt((this.touches[touchesCount-1].clientY - this.touches[0].clientY) / 50);
+        var secondsDiff = parseInt((this.touches[touchesCount-1].clientY - this.touches[0].clientY) / 30);
 
         if (!this.secondsModifier && secondsDiff != 0) {
-          this.secondsModifier = { step: -(secondsDiff) };
-
-          this.secondsModifier['interval'] = setInterval(function() {
-            this.resetCountingNumber();
-          }.bind(this), 800);
+          this.secondsModifier = { base: this.seconds, delta: -(secondsDiff) };
         }
 
         if (this.secondsModifier) {
-          this.secondsModifier['step'] = -(secondsDiff);
-          this.countingNumber += -(secondsDiff);
+          this.secondsModifier.delta = -(secondsDiff);
+          this.seconds = this.secondsModifier.base + this.secondsModifier.delta;
         }
       },
       ontouchend: function(e) {
-        this.touches = null;
+        if (this.touches) this.touches = null;
         if (this.secondsModifier) {
-          this.seconds += this.secondsModifier['step'];
-          clearInterval(this.secondsModifier['interval']);
+          //this.seconds += this.secondsModifier['delta'];
           this.secondsModifier = null;
+          this.resetCountingNumber();
         }
       }
     }
