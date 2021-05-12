@@ -26,15 +26,17 @@
     //mixins: [chaModel],
     data: function() {
       return {
+        debugging: false,
         name: "name",
-        highlightClass: 'bg-yellow-200',
         round: 1,
         seconds: this.$route.query.seconds ? parseInt(this.$route.query.seconds) : 30,
         countingNumber: null,
         secondsModifier: null,
         state: {
-          current: { waiting: true, counting: false, paused: false, completed: false }
-        }
+          value: 'waiting',
+          current: { waiting: true, counting: false, paused: false, completed: false },
+        },
+        styleClass: { waiting: 'bg-white', counting: 'bg-yellow-200', paused: ['bg-yellow-200', 'bg-opacity-10'], completed: 'bg-gray-100' }
       }
     },
     created: function() {
@@ -97,6 +99,7 @@
       complete: function() {
         this.setState('completed');
         this.updateStyles();
+        setTimeout(this.nextRound, 2000);
       },
       edit: function() {
         // router.push({ path: '/edit', query: { seconds: this.seconds } });
@@ -121,18 +124,20 @@
         allStates.forEach(function(key) {
           this.state.current[key] = false;
         }.bind(this));
+
         this.state.current[newState] = true;
+        this.state.value = newState;
       },
       updateStyles: function() {
-        if (this.state.current.counting) {
-          Vue.nextTick(function() {
-            document.body.classList.add(this.highlightClass);
-          }.bind(this));
-        } else {
-          Vue.nextTick(function() {
-            document.body.classList.remove(this.highlightClass);
-          }.bind(this));
-        }
+        Vue.nextTick(function() {
+          for (const state in this.state.current) {
+            if (!this.styleClass[state].forEach) { this.styleClass[state] = [this.styleClass[state]]; }
+            this.styleClass[state].forEach(function(styleClass) {
+              document.body.classList.remove(styleClass);
+            }.bind(this));
+          }
+          document.body.className += ' ' + this.styleClass[this.state.value].join(' ');
+        }.bind(this));
       },
       resetCountingNumber: function() {
         this.seconds = parseInt(this.seconds);
@@ -144,8 +149,11 @@
       },
       ontouchmove: function(e) {
         this.touches.push(e.touches[0]);
+
+        if (!this.state.current.waiting) return;
+
         var touchesCount = this.touches.length;
-        var secondsDiff = parseInt((this.touches[touchesCount-1].clientY - this.touches[0].clientY) / 30);
+        var secondsDiff = parseInt((this.touches[touchesCount-1].clientY - this.touches[0].clientY) / 36);
 
         if (!this.secondsModifier && secondsDiff != 0) {
           this.secondsModifier = { base: this.seconds, delta: -(secondsDiff) };
@@ -209,7 +217,7 @@
   //  el: '#main',
   //  mixins: [chaModel],
   //  data: {
-  //    currentStep: [0, 0],
+  //    highlightClasscurrentStep: [0, 0],
   //    timer: {
   //      status: 0,
   //      number: 0
