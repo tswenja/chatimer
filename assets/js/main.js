@@ -1,4 +1,5 @@
 (function() {
+  var noSleep = new NoSleep();
 
   // models
   var chaModel = {
@@ -49,6 +50,23 @@
       }
     },
     methods: {
+      count: function() {
+        if (!this.state.current.waiting) return;
+
+        this.setState('counting');
+        this.updateStyles();
+
+        this.countdownStepRemaining = 1000;
+        this.countdownStart = Date.now();
+        this.countdown();
+
+        // Enable wake lock.
+        // (must be wrapped in a user input event handler e.g. a mouse or touch handler)
+        document.addEventListener('click', function enableNoSleep() {
+          document.removeEventListener('click', enableNoSleep, false);
+          noSleep.enable();
+        }, false);
+      },
       countdown: function() {
         this.countdownId = setTimeout(function() {
           if (this.state.current.counting && this.countingNumber > 0) {
@@ -76,16 +94,10 @@
         this.resetCountingNumber();
         this.setState('waiting');
         this.updateStyles();
-      },
-      count: function() {
-        if (!this.state.current.waiting) return;
 
-        this.setState('counting');
-        this.updateStyles();
-
-        this.countdownStepRemaining = 1000;
-        this.countdownStart = Date.now();
-        this.countdown();
+        // Disable wake lock at some point in the future.
+        // (does not need to be wrapped in any user input event handler)
+        noSleep.disable();
       },
       pause: function() {
         if (!this.state.current.counting) return;
