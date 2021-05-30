@@ -111,7 +111,7 @@
       complete: function() {
         this.setState('completed');
         this.updateStyles();
-        setTimeout(this.nextRound, 2000);
+        //setTimeout(this.nextRound, 2000);
       },
       edit: function() {
         // router.push({ path: '/edit', query: { seconds: this.seconds } });
